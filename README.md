@@ -8,11 +8,11 @@ The main points of this image are:
 
 ## Versions
 
-* Ubuntu:            20.04
-* InfluxDB:          1.8.10
-* Chronograf:        1.9.1
-* Telegraf:          1.20.4-1
-* Grafana:           7.5.12
+# Default versions
+ENV TELEGRAF_VERSION 1.16.3-1
+ENV INFLUXDB_VERSION 1.8.3
+ENV GRAFANA_VERSION  7.3.5
+ENV CHRONOGRAF_VERSION 1.8.9.1
 
 ## Quick Start
 
