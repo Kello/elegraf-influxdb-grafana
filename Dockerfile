@@ -1,16 +1,16 @@
 FROM ubuntu:20.04
 
-LABEL maintainer="Kello Smith <kello@geekanarchy.org>"
+LABEL maintainer="Arthur Kono <artlov@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
-#ENV TZ=America/Chicago
+#ENV TZ=Europe/Tallinn
 
 # Default versions
-ENV TELEGRAF_VERSION 1.20.4-1
-ENV INFLUXDB_VERSION 1.8.10
-ENV GRAFANA_VERSION  7.5.12
-ENV CHRONOGRAF_VERSION 1.9.1
+ENV TELEGRAF_VERSION 1.16.3-1
+ENV INFLUXDB_VERSION 1.8.3
+ENV GRAFANA_VERSION  7.3.5
+ENV CHRONOGRAF_VERSION 1.8.9.1
 
 ENV GF_DATABASE_TYPE=sqlite3
 
@@ -88,6 +88,12 @@ RUN wget https://dl.grafana.com/oss/release/grafana_${GRAFANA_VERSION}_amd64.deb
 ADD grafana/provisioning /etc/grafana/provisioning
 COPY grafana/grafana.ini /etc/grafana/grafana.ini
 
+# Synology SNMP
+COPY synology/synology.conf /etc/telegraf/telegraf.d
+COPY synology/Synology_MIB_File.tar.gz /tmp
+RUN tar -xvzf /tmp/Synology_MIB_File.tar.gz -C /usr/share/snmp/mibs
+RUN chown root:root /usr/share/snmp/mibs
+RUN chmod 755 /usr/share/snmp/mibs
 
 # Install plugins
 #COPY rootfs /tmp
