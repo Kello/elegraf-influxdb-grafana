@@ -1,16 +1,16 @@
 FROM ubuntu:20.04
 
-LABEL maintainer="Arthur Kono <artlov@gmail.com>"
+LABEL maintainer="Kello Smith <kello@geekanarchy.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
-#ENV TZ=Europe/Tallinn
+#ENV TZ=America/Chicago
 
 # Default versions
-ENV TELEGRAF_VERSION 1.16.3-1
-ENV INFLUXDB_VERSION 1.8.3
-ENV GRAFANA_VERSION  7.3.5
-ENV CHRONOGRAF_VERSION 1.8.9.1
+ENV TELEGRAF_VERSION 1.20.4-1
+ENV INFLUXDB_VERSION 1.8.10
+ENV GRAFANA_VERSION  7.5.12
+ENV CHRONOGRAF_VERSION 1.9.1
 
 ENV GF_DATABASE_TYPE=sqlite3
 
