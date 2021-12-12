@@ -88,13 +88,6 @@ RUN wget https://dl.grafana.com/oss/release/grafana_${GRAFANA_VERSION}_amd64.deb
 ADD grafana/provisioning /etc/grafana/provisioning
 COPY grafana/grafana.ini /etc/grafana/grafana.ini
 
-# Synology SNMP
-COPY synology/synology.conf /etc/telegraf/telegraf.d
-COPY synology/Synology_MIB_File.tar.gz /tmp
-RUN tar -xvzf /tmp/Synology_MIB_File.tar.gz -C /usr/share/snmp/mibs
-RUN chown root:root /usr/share/snmp/mibs
-RUN chmod 755 /usr/share/snmp/mibs
-
 # Install plugins
 #COPY rootfs /tmp
 #RUN /tmp/grafana-plugins.sh
