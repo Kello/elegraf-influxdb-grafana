@@ -27,8 +27,8 @@ docker run --ulimit nofile=66000:66000 -d \
   -p 8086:8086 \
   -p 22022:22 \
   -p 8125:8125/udp \
-  -v /opt/Docker/telegraf-influxdb-grafana/influxdb:/var/lib/influxdb \
-  -v /opt/Docker/telegraf-influxdb-grafana/grafana:/var/lib/grafana \
+  -v /folder/location/influxdb:/var/lib/influxdb \
+  -v /folder/location:/var/lib/grafana \
   -e TZ=America/Chicago \
   kellosmith/telegraf-influxdb-grafana
 ```
