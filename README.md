@@ -30,7 +30,7 @@ docker run --ulimit nofile=66000:66000 -d \
   -v /folder/location/influxdb:/var/lib/influxdb \
   -v /folder/location:/var/lib/grafana \
   -e TZ=America/Chicago \
-  kellosmith/telegraf-influxdb-grafana
+  kellosmith/telegraf-influxdb-grafana:latest
 ```
 
 You can replace `latest` with the desired version listed in changelog file.
