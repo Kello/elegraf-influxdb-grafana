@@ -1,19 +1,18 @@
 # Docker Image with Telegraf, InfluxDB and Grafana
-This is a Docker image based on the [Docker Image with Telegraf (StatsD), InfluxDB and Grafana](https://github.com/samuelebistoletti/docker-statsd-influxdb-grafana) from [Samuele Bistoletti](https://github.com/samuelebistoletti) and [Docker Image with InfluxDB and Grafana](https://github.com/philhawthorne/docker-influxdb-grafana) from [Phil Hawthorne](https://github.com/philhawthorne). The main purpose of this image is to be used to show data from a Domoticz installation and Synology NAS, which hosted this image.
+This is a Docker image based on the [Docker Image with Telegraf, InfluxDB and Grafana] from [Arthur Kono](https://github.com/artlov/docker-telegraf-influxdb-grafana) The main purpose of this image is to be used for personal lab.
 
 The main points of this image are:
 
 * Persistence is supported via mounting volumes to a Docker container.
 * Grafana will store its data in SQLite files instead of a MySQL table on the container, so MySQL is not installed.
-* Added snmp packages and Synology NAS MIBS.
 
 ## Versions
 
 * Ubuntu:            20.04
-* InfluxDB:          1.8.3
-* Chronograf:        1.8.9.1
-* Telegraf:          1.16.3
-* Grafana:           7.3.5
+* InfluxDB:          1.8.10
+* Chronograf:        1.9.1
+* Telegraf:          1.20.4-1
+* Grafana:           7.5.12
 
 ## Quick Start
 
@@ -21,17 +20,17 @@ To start the container the first time launch:
 
 ```sh
 docker run --ulimit nofile=66000:66000 -d \
-  --name artlov-tig \
-  --hostname tig \
+  --name telegraf-influxdb-grafana \
+  --hostname telegraf-influxdb-grafana \
   -p 3003:3003 \
   -p 3004:8888 \
   -p 8086:8086 \
   -p 22022:22 \
   -p 8125:8125/udp \
-  -v /path/for/influxdb:/var/lib/influxdb \
-  -v /path/for/grafana:/var/lib/grafana \
-  -e TZ=Europe/Tallinn \
-  artlov/docker-telegraf-influxdb-grafana:latest
+  -v /opt/Docker/telegraf-influxdb-grafana/influxdb:/var/lib/influxdb \
+  -v /opt/Docker/telegraf-influxdb-grafana/grafana:/var/lib/grafana \
+  -e TZ=America/Chicago \
+  kellosmith/telegraf-influxdb-grafana
 ```
 
 You can replace `latest` with the desired version listed in changelog file.
@@ -40,13 +39,13 @@ Please replace the variable `TZ` with your local time zone or remove this line a
 To stop the container launch:
 
 ```sh
-docker stop artlov-tig
+docker stop telegraf-influxdb-grafana
 ```
 
 To start the container again launch:
 
 ```sh
-docker start artlov-tig
+docker start telegraf-influxdb-grafana
 ```
 
 ## Mapped Ports
